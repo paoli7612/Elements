@@ -15,12 +15,13 @@ class Loop:
         self.map = Map(self.players)
 
         self.round = 0
+        self.new_player(2,2,"1")
+        self.new_player(1,12,"2")
+        self.new_player(21,4,"3")
 
-        p = Player(self.map,(10,10),10)
-        c = Player(self.map,(2,12),10)
+    def new_player(self, x, y, code):
+        p = Player(self.map,(x,y),code)
         self.players.add(p)
-        self.players.add(c)
-
 
     def change_round(self):
         self.round = self.round%len(self.players)+1

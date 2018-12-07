@@ -8,7 +8,7 @@ class Sprite(pygame.sprite.Sprite, Images):
         self.pos = pos
         pos = st.pixel(*pos)
         pygame.sprite.Sprite.__init__(self)
-        Images.__init__(self,1,0)
+        Images.__init__(self, code)
         self.rect = self.image.get_rect()
         self.rect.topleft = pos
 
