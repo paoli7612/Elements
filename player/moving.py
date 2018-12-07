@@ -2,6 +2,7 @@ import settings as st
 class Moving:
     def __init__(self, max):
         self.max = max
+        self.is_moving = False
 
     def around(self, pos, max):
         if max:
@@ -27,4 +28,7 @@ class Moving:
 
     def move(self, pos):
         if pos in self.nexts:
-            self.pos = pos
+            self.is_moving = True
+            self.next_pos = pos
+            delta = st.detract(self.pos, self.next_pos)
+            self.dx, self.dy = delta

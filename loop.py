@@ -3,6 +3,7 @@ import settings as st
 from map import Map
 from player import Player
 from cursor import Cursor
+from obstacle import Obstacle
 
 class Loop:
     def __init__(self):
@@ -12,12 +13,16 @@ class Loop:
 
         self.cursor = Cursor()
         self.players = pygame.sprite.Group()
-        self.map = Map(self.players)
+        self.obstacles = pygame.sprite.Group()
+        self.map = Map(self.players, self.obstacles)
 
         self.round = 0
         self.new_player(2,2,"1")
         self.new_player(1,12,"2")
-        self.new_player(21,4,"3")
+        self.new_player(13,4,"3")
+        self.new_player(18,2,"4")
+        o = Obstacle(12,12)
+        self.obstacles.add(o)
 
     def new_player(self, x, y, code):
         p = Player(self.map,(x,y),code)
@@ -28,7 +33,6 @@ class Loop:
         p = self.players.sprites()[self.round-1]
         self.selected = p
         self.lights = p.get_nexts()
-
 
     def start(self):
         self.running = True
@@ -48,11 +52,12 @@ class Loop:
                 pass
             # MOUSE
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = st.index(*event.pos)
-                if pos in self.lights and self.map.empty(pos):
-                    self.selected.move(pos)
-                    self.lights = self.selected.get_nexts()
-                    self.change_round()
+                if self.map.is_moving():
+                    pos = st.index(*event.pos)
+                    if pos in self.lights and self.map.empty(pos):
+                        self.selected.move(pos)
+                        self.lights = self.selected.get_nexts()
+                        self.change_round()
 
     def update(self):
         self.cursor.update()
@@ -60,11 +65,11 @@ class Loop:
 
     def draw(self):
         self.map.draw(self.screen)
+        self.obstacles.draw(self.screen)
         self.players.draw(self.screen)
-
-        for l in self.lights:
-            self.map.light(self.screen, l)
-
+        if self.map.is_moving():
+            for l in self.lights:
+                self.map.light(self.screen, l)
         self.cursor.draw(self.screen)
         pygame.display.flip()
 

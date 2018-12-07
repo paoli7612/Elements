@@ -3,9 +3,10 @@ import settings as st
 import colors as cl
 
 class Map:
-    def __init__(self, players):
+    def __init__(self, players, obstacles):
         self.screen = pygame.Surface(st.SIZE)
         self.players = players
+        self.obstacles = obstacles
         self.draw_grill()
 
     def draw_grill(self):
@@ -23,9 +24,17 @@ class Map:
     def draw(self, screen):
         screen.blit(self.screen, (0,0))
 
+    def is_moving(self):
+        for p in self.players:
+            if p.is_moving:
+                return False
+        return True
+
     def empty(self, pos):
         for p in self.players:
-            if p.pos == pos:
-                print(p.pos)
+            if p.next_pos == pos:
+                return False
+        for o in self.obstacles:
+            if o.pos == pos:
                 return False
         return True
