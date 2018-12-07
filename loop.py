@@ -10,14 +10,14 @@ class Loop:
         self.clock = pygame.time.Clock()
         pygame.display.set_caption(st.TITLE)
 
-        self.map = Map()
         self.cursor = Cursor()
         self.players = pygame.sprite.Group()
+        self.map = Map(self.players)
 
         self.round = 0
 
-        p = Player((10,10),10)
-        c = Player((2,12),10)
+        p = Player(self.map,(10,10),10)
+        c = Player(self.map,(2,12),10)
         self.players.add(p)
         self.players.add(c)
 
@@ -46,11 +46,12 @@ class Loop:
             if event.type == pygame.KEYDOWN:
                 pass
             # MOUSE
-            if event.type ==pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = st.index(*event.pos)
-                self.selected.move(pos)
-                self.lights = self.selected.get_nexts()
-                self.change_round()
+                if pos in self.lights and self.map.empty(pos):
+                    self.selected.move(pos)
+                    self.lights = self.selected.get_nexts()
+                    self.change_round()
 
     def update(self):
         self.cursor.update()

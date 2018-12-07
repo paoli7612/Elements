@@ -13,17 +13,18 @@ class Moving:
             l.append((x, y-1))
             self.nexts+=l
             for n in l:
-                self.around(n, max-1)
+                if self.map.empty(n):
+                    self.around(n, max-1)
+                else:
+                    self.nexts.remove(n)
 
     def get_nexts(self):
         self.nexts = list()
         pos = st.index(*self.rect.topleft)
         self.around(pos, self.max)
         self.nexts = list(set(self.nexts))
-        self.nexts.remove(pos)
         return self.nexts
 
     def move(self, pos):
         if pos in self.nexts:
-            pos = st.pixel(*pos)
-            self.rect.topleft = pos
+            self.pos = pos
