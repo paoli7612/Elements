@@ -14,15 +14,24 @@ class Loop:
         self.cursor = Cursor()
         self.players = pygame.sprite.Group()
 
+        self.round = 0
 
         p = Player((10,10),10)
+        c = Player((2,12),10)
         self.players.add(p)
+        self.players.add(c)
 
+
+    def change_round(self):
+        self.round = self.round%len(self.players)+1
+        p = self.players.sprites()[self.round-1]
         self.selected = p
         self.lights = p.get_nexts()
 
+
     def start(self):
         self.running = True
+        self.change_round()
         while self.running:
             self.clock.tick(40)
             self.events()
@@ -41,9 +50,11 @@ class Loop:
                 pos = st.index(*event.pos)
                 self.selected.move(pos)
                 self.lights = self.selected.get_nexts()
+                self.change_round()
 
     def update(self):
         self.cursor.update()
+        self.players.update()
 
     def draw(self):
         self.map.draw(self.screen)

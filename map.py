@@ -16,9 +16,8 @@ class Map:
             pygame.draw.line(self.screen, cl.BLACK, (0,y), (st.WIDTH, y))
 
     def light(self, screen, pos):
-        t = pygame.Surface(st.TILES)
+        t = pygame.image.load("images/light.png")
         pos = st.pixel(*pos)
-        t.fill(cl.RED)
         screen.blit(t, pos)
 
 

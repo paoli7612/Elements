@@ -7,3 +7,6 @@ class Player(Sprite, Moving):
         Sprite.__init__(self, pos, code)
         Moving.__init__(self, 3)
         self.code = code
+
+    def update(self):
+        pass
