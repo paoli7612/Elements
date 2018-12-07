@@ -1,4 +1,5 @@
 import pygame
+
 from loop import Loop
 
 class Boss:

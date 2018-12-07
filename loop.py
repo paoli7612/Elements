@@ -18,6 +18,9 @@ class Loop:
         p = Player((10,10),10)
         self.players.add(p)
 
+        self.selected = p
+        self.lights = p.get_nexts()
+
     def start(self):
         self.running = True
         while self.running:
@@ -36,6 +39,8 @@ class Loop:
             # MOUSE
             if event.type ==pygame.MOUSEBUTTONDOWN:
                 pos = st.index(*event.pos)
+                self.selected.move(pos)
+                self.lights = self.selected.get_nexts()
 
     def update(self):
         self.cursor.update()
@@ -43,7 +48,10 @@ class Loop:
     def draw(self):
         self.map.draw(self.screen)
         self.players.draw(self.screen)
-        self.map.light(self.screen, (2,2))
+
+        for l in self.lights:
+            self.map.light(self.screen, l)
+
         self.cursor.draw(self.screen)
         pygame.display.flip()
 
