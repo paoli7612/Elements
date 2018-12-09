@@ -1,11 +1,11 @@
 import pygame
 
-from loop import Loop
+from match import Match
 
 class Boss:
     def __init__(self):
-        self.loop = Loop()
-        self.loop.start()
+        self.match = Match()
+        self.match.start()
 
 def main(argv):
     b = Boss()

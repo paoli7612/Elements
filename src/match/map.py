@@ -3,10 +3,8 @@ import settings as st
 import colors as cl
 
 class Map:
-    def __init__(self, players, obstacles):
+    def __init__(self):
         self.screen = pygame.Surface(st.SIZE)
-        self.players = players
-        self.obstacles = obstacles
         self.draw_grill()
 
     def draw_grill(self):
