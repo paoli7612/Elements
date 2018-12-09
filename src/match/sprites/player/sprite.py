@@ -10,6 +10,13 @@ class Sprite(pygame.sprite.Sprite, Images):
         Images.__init__(self, code)
         self.rect = self.image.get_rect()
         self.rect.topleft = pos.pixel()
+        self.selected = False
+        self.selected_image = pygame.image.load("images/selected.png")
 
     def draw(self, screen):
+        if self.selected:
+            screen.blit(self.selected_image, self.rect)
         screen.blit(self.image, self.rect)
+
+    def update(self):
+        pass

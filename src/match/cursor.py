@@ -2,6 +2,7 @@ import pygame
 
 import colors as cl
 import settings as st
+from position import Pos
 
 class Cursor:
     def __init__(self):
@@ -14,6 +15,5 @@ class Cursor:
 
     def update(self):
         pos = pygame.mouse.get_pos()
-        pos = st.index(*pos)
-        pos = st.pixel(*pos)
-        self.rect.topleft = pos
+        pos = Pos(pos, is_pixel=True)
+        self.rect.topleft = pos.pixel()

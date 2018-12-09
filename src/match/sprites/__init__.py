@@ -1,27 +1,40 @@
 import pygame
 from match.sprites.player import Player
 
+Group = pygame.sprite.Group
+
 class Sprites:
     def __init__(self, map):
-        self.players = pygame.sprite.Group()
-        self.walls = pygame.sprite.Group()
-        self.sprites = pygame.sprite.Group()
+        self.players = Group()
+        self.walls = Group()
+        self.all = Group()
+        self.teams = dict()
         self.map = map
 
-    def new_player(self, pos, code):
-        p = Player(self.map, pos, code)
+    def new_player(self, pos, code, team):
+        p = Player(self.map, pos, code, team)
+        if team in self.teams:
+            self.teams[team].add(p)
+        else: self.teams[team] = Group()
         self.players.add(p)
-        self.sprites.add(p)
+        self.all.add(p)
 
     def new_wall(self, pos, code):
         w = Wall(pos, code)
         self.walls.add(w)
-        self.sprites.add(w)
+        self.all.add(w)
 
     def draw(self, screen):
-        for sprite in self.sprites:
+        for sprite in self.all:
             sprite.draw(screen)
 
     def update(self):
-        for sprite in self.sprites:
+        for sprite in self.all:
             sprite.update()
+
+    def deselect_all(self):
+        for sprite in self.all:
+            sprite.selected = False
+
+    def __iter__(self):
+        return self.all.__iter__()

@@ -25,17 +25,7 @@ class Map:
         screen.blit(self.screen, (0,0))
         self.sprites.draw(screen)
 
-    def is_moving(self):
-        for p in self.players:
-            if p.is_moving:
-                return False
-        return True
-
-    def empty(self, pos):
-        for p in self.players:
-            if p.next_pos == pos:
-                return False
-        for o in self.obstacles:
-            if o.pos == pos:
-                return False
-        return True
+    def get_sprite(self, pos):
+        for sprite in self.sprites:
+            if sprite.pos == pos:
+                return sprite 
