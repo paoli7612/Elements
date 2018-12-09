@@ -1,9 +1,11 @@
 import pygame
 import settings as st
 import colors as cl
+from match.sprites import Sprites
 
 class Map:
     def __init__(self):
+        self.sprites = Sprites(self)
         self.screen = pygame.Surface(st.SIZE)
         self.draw_grill()
 
@@ -21,6 +23,7 @@ class Map:
 
     def draw(self, screen):
         screen.blit(self.screen, (0,0))
+        self.sprites.draw(screen)
 
     def is_moving(self):
         for p in self.players:

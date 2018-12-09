@@ -1,4 +1,4 @@
-from player.sprite import Sprite
+from match.sprites.player.sprite import Sprite
 import settings as st
 
 class Player(Sprite):

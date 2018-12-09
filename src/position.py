@@ -1,10 +1,14 @@
 import settings as st
 
 class Pos:
-    def __init__(self, pos):
+    def __init__(self, pos, is_pixel=False):
         x, y = pos
-        self.x = x
-        self.y = y
+        if is_pixel:
+            self.x = x*st.TILE
+            self.y = y*st.TILE
+        else:
+            self.x = x
+            self.y = y
 
     def pixel(self):
         x = self.x * st.TILE
