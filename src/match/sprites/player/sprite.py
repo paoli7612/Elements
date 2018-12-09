@@ -5,6 +5,8 @@ import colors as cl
 
 class Sprite(pygame.sprite.Sprite, Images):
     def __init__(self, pos, code):
+        self.team_image = pygame.Surface(st.TILES)
+        self.team_image.fill(cl.TEAMS[self.team])
         self.pos = pos
         pygame.sprite.Sprite.__init__(self)
         Images.__init__(self, code)
@@ -16,6 +18,8 @@ class Sprite(pygame.sprite.Sprite, Images):
     def draw(self, screen):
         if self.selected:
             screen.blit(self.selected_image, self.rect)
+        else:
+            screen.blit(self.team_image, self.rect)
         screen.blit(self.image, self.rect)
 
     def update(self):
