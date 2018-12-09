@@ -8,6 +8,7 @@ class Map:
         self.sprites = Sprites(self)
         self.screen = pygame.Surface(st.SIZE)
         self.draw_grill()
+        self.light_image = pygame.image.load("images/light.png")
 
     def draw_grill(self):
         self.screen.fill(cl.GREY)
@@ -17,13 +18,18 @@ class Map:
             pygame.draw.line(self.screen, cl.BLACK, (0,y), (st.WIDTH, y))
 
     def light(self, screen, pos):
-        t = pygame.image.load("images/light.png")
-        pos = st.pixel(*pos)
-        screen.blit(t, pos)
+        try:
+            screen.blit(self.light_image, pos.pixel())
+        except: print("no")
 
     def draw(self, screen):
         screen.blit(self.screen, (0,0))
         self.sprites.draw(screen)
+
+    def empty(self, pos):
+        sprite = self.get_sprite(pos)
+        print(sprite == None)
+        return sprite == None
 
     def get_sprite(self, pos):
         for sprite in self.sprites:

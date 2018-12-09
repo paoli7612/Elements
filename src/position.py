@@ -20,6 +20,10 @@ class Pos:
         y = self.y
         return x, y
 
+    def add(self, dx, dy):
+        self.x += dx
+        self.y += dy
+
     def __add__(self, other):
         x = self.x + other.x
         y = self.y + other.y
@@ -36,3 +40,6 @@ class Pos:
         ix = self.x == other.x
         iy = self.y == other.y
         return ix and iy
+
+    def __str__(self):
+        return "%d/%d"%(self.x, self.y)

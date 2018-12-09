@@ -37,3 +37,4 @@ class Sprite(pygame.sprite.Sprite, Images):
 
     def update(self):
         self.info.update()
+        self.rect.topleft = self.pos.pixel()

@@ -19,6 +19,15 @@ class Loop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+
+            sprite = self.flags["select"]
+            if sprite:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w: sprite.move(dy=-1)
+                    if event.key == pygame.K_s: sprite.move(dy=1)
+                    if event.key == pygame.K_a: sprite.move(dx=-1)
+                    if event.key == pygame.K_d: sprite.move(dx=1)
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.change_flag(event.pos, "select")
@@ -34,4 +43,6 @@ class Loop:
         self.cursor.draw(self.screen)
         if self.flags["show_info"]:
             self.flags["show_info"].info.draw(self.screen)
+        if self.flags["select"]:
+            self.flags["select"].mover.draw(self.screen)
         pygame.display.flip()
