@@ -35,6 +35,9 @@ class Sprites:
     def deselect_all(self):
         for sprite in self.all:
             sprite.selected = False
+    def deshow_all(self):
+        for sprite in self.all:
+            sprite.show_info = False
 
     def __iter__(self):
         return self.all.__iter__()

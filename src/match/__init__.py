@@ -30,3 +30,11 @@ class Match(Loop):
         if sprite and sprite.team == self.map.turn:
             self.selected = sprite
             sprite.selected = True
+
+
+    def show_info(self, pos):
+        pos = Pos(pos, is_pixel=True)
+        sprite = self.map.get_sprite(pos)
+        self.map.sprites.deshow_all()
+        if sprite:
+            sprite.show_info = True

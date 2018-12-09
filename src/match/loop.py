@@ -22,6 +22,8 @@ class Loop:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.select(event.pos)
+                elif event.button == 3:
+                    self.show_info(event.pos)
 
     def update(self):
         self.map.sprites.update()

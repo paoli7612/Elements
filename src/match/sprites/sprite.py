@@ -1,19 +1,20 @@
 import pygame
 from match.sprites.player.images import Images
+from match.sprites.player.info import Info
 import settings as st
 import colors as cl
-from font import Font
 from position import Pos
 
 class Sprite(pygame.sprite.Sprite, Images):
     def __init__(self, pos, code, team=0):
         self.pos = pos
-        self.font = Font(pos)
         pygame.sprite.Sprite.__init__(self)
         Images.__init__(self, code)
         self.rect = self.image.get_rect()
         self.rect.topleft = pos.pixel()
         self.selected = False
+        self.show_info = False
+        self.info = Info(self)
         self.init_surfaces()
 
     def init_surfaces(self):
@@ -31,9 +32,8 @@ class Sprite(pygame.sprite.Sprite, Images):
             screen.blit(self.selected_image, self.rect)
         screen.blit(self.team_image, self.rect)
         screen.blit(self.image, self.rect)
-        if self.map.turn == self.team:
-            s,r = self.font.write(str(self.speed),26)
-            screen.blit(s, r)
+        if self.show_info:
+            self.info.draw(screen)
 
     def update(self):
-        pass
+        self.info.update()
