@@ -1,4 +1,4 @@
-from match.sprites.player.sprite import Sprite
+from match.sprites.sprite import Sprite
 import settings as st
 
 class Player(Sprite):
@@ -6,4 +6,5 @@ class Player(Sprite):
         self.map = map
         self.code = code
         self.team = team
+        self.speed = 2
         Sprite.__init__(self, pos, code)

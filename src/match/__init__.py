@@ -12,19 +12,21 @@ class Match(Loop):
         Loop.__init__(self)
         self.map = Map()
         self.map.sprites.new_player(Pos((2,2)), "1", team=1)
-        self.map.sprites.new_player(Pos((3,6)), "2", team=2)
+        self.map.sprites.new_player(Pos((3,4)), "2", team=1)
+        self.map.sprites.new_player(Pos((6,7)), "3", team=2)
+        self.map.sprites.new_player(Pos((9,10)), "4", team=2)
         self.cursor = Cursor()
-        self.turn = 1
+        self.map.turn = 1
         self.start()
 
     def switch_turn(self):
-        self.turn %= MAX_TEAM
-        self.turn += 1
+        self.map.turn %= MAX_TEAM
+        self.map.turn += 1
 
     def select(self, pos):
         pos = Pos(pos, is_pixel=True)
         sprite = self.map.get_sprite(pos)
-        if sprite and sprite.team == self.turn:
+        if sprite and sprite.team == self.map.turn:
             self.selected = sprite
             self.map.sprites.deselect_all()
             sprite.selected = True
