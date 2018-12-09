@@ -28,4 +28,4 @@ class Map:
     def get_sprite(self, pos):
         for sprite in self.sprites:
             if sprite.pos == pos:
-                return sprite 
+                return sprite

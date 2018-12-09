@@ -4,15 +4,13 @@ import colors as cl
 from position import Pos
 
 class Font:
-    def __init__(self, pos):
+    def __init__(self, image):
         self.font_name = pygame.font.match_font("arial")
-        self.pos = pos
+        self.image = image
 
-    def write(self, text, size):
+    def write(self, text, size, pos, color):
         font = pygame.font.Font(self.font_name, size)
-        text_surface = font.render(text, True, cl.TEXT)
-        rect = text_surface.get_rect()
-        pos = Pos(self.pos.index())
-        pos.x += 0.5
-        rect.midbottom = pos.pixel()
-        return text_surface, rect
+        image = font.render(text, True, color)
+        rect = image.get_rect()
+        rect.topleft = pos
+        self.image.blit(image, rect)

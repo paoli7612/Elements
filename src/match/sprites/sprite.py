@@ -12,10 +12,12 @@ class Sprite(pygame.sprite.Sprite, Images):
         Images.__init__(self, code)
         self.rect = self.image.get_rect()
         self.rect.topleft = pos.pixel()
-        self.selected = False
-        self.show_info = False
+        self.flags = {"select": False, "show_info": False}
         self.info = Info(self)
         self.init_surfaces()
+
+    def change(self, flag, value):
+        self.flags[flag] = value
 
     def init_surfaces(self):
         #Team
@@ -28,12 +30,10 @@ class Sprite(pygame.sprite.Sprite, Images):
         pygame.draw.circle(self.selected_image, cl.WHITE, (st.TILE//2,st.TILE//2), st.TILE//3*2)
 
     def draw(self, screen):
-        if self.selected:
+        if self.flags["select"]:
             screen.blit(self.selected_image, self.rect)
         screen.blit(self.team_image, self.rect)
         screen.blit(self.image, self.rect)
-        if self.show_info:
-            self.info.draw(screen)
 
     def update(self):
         self.info.update()

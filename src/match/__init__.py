@@ -17,24 +17,21 @@ class Match(Loop):
         self.map.sprites.new_player(Pos((9,10)), "4", team=2)
         self.cursor = Cursor()
         self.map.turn = 1
+
+        self.flags = {"select": False, "show_info": False}
+
         self.start()
 
     def switch_turn(self):
         self.map.turn %= MAX_TEAM
         self.map.turn += 1
 
-    def select(self, pos):
+    def change_flag(self, pos, flag):
         pos = Pos(pos, is_pixel=True)
         sprite = self.map.get_sprite(pos)
-        self.map.sprites.deselect_all()
-        if sprite and sprite.team == self.map.turn:
-            self.selected = sprite
-            sprite.selected = True
-
-
-    def show_info(self, pos):
-        pos = Pos(pos, is_pixel=True)
-        sprite = self.map.get_sprite(pos)
-        self.map.sprites.deshow_all()
+        try: self.flags[flag].change(flag, False)
+        except: pass
+        self.flags[flag] = False
         if sprite:
-            sprite.show_info = True
+            self.flags[flag] = sprite
+            sprite.change(flag, True)
