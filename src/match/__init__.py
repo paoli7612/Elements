@@ -26,7 +26,7 @@ class Match(Loop):
     def select(self, pos):
         pos = Pos(pos, is_pixel=True)
         sprite = self.map.get_sprite(pos)
+        self.map.sprites.deselect_all()
         if sprite and sprite.team == self.map.turn:
             self.selected = sprite
-            self.map.sprites.deselect_all()
             sprite.selected = True

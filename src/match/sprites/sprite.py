@@ -8,7 +8,7 @@ from position import Pos
 class Sprite(pygame.sprite.Sprite, Images):
     def __init__(self, pos, code, team=0):
         self.pos = pos
-        self.font = Font()
+        self.font = Font(pos)
         pygame.sprite.Sprite.__init__(self)
         Images.__init__(self, code)
         self.rect = self.image.get_rect()
@@ -29,12 +29,11 @@ class Sprite(pygame.sprite.Sprite, Images):
     def draw(self, screen):
         if self.selected:
             screen.blit(self.selected_image, self.rect)
-
         screen.blit(self.team_image, self.rect)
         screen.blit(self.image, self.rect)
         if self.map.turn == self.team:
-            s = self.font.write(str(self.speed),26,cl.RED)
-            screen.blit(s, self.rect)
+            s,r = self.font.write(str(self.speed),26)
+            screen.blit(s, r)
 
     def update(self):
         pass

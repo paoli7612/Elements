@@ -20,10 +20,16 @@ class Pos:
         y = self.y
         return x, y
 
+    def __add__(self, other):
+        x = self.x + other.x
+        y = self.y + other.y
+        p = Pos((x, y))
+        return p
+
     def __neg__(self, other):
         x = self.x - other.x
         y = self.y - other.y
-        p = Pos(x, y)
+        p = Pos((x, y))
         return p
 
     def __eq__(self, other):
