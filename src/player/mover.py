@@ -1,10 +1,7 @@
 from position import Pos
 
 class Mover:
-    def __init__(self, player):
-        self.player = player
-        self.map = player.map
-        self.speed = self.player.stats.speed.value
+    def __init__(self):
         self.nexts = list()
         self.calculate()
 
@@ -21,8 +18,8 @@ class Mover:
                 self.around(n, d-1)
 
     def calculate(self):
-        pos = self.player.pos
-        self.around(pos, self.speed)
+        self.around(self.pos, self.stats.speed.value)
+        self.nexts = list(set(self.nexts))
 
     def move(self, dx, dy):
         if self.speed:

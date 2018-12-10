@@ -10,10 +10,10 @@ class Match(Loop):
     def __init__(self):
         Loop.__init__(self)
         self.map = Map()
-        self.map.sprites.new_player(Pos((2,2)), "1", team=1)
-        self.map.sprites.new_player(Pos((3,4)), "2", team=1)
-        self.map.sprites.new_player(Pos((6,7)), "3", team=2)
-        self.map.sprites.new_player(Pos((9,10)), "4", team=2)
+        self.map.sprites.new_player(Pos((2,2)), "1/2", team=1)
+        self.map.sprites.new_player(Pos((3,4)), "2/2", team=1)
+        self.map.sprites.new_player(Pos((6,7)), "3/2", team=2)
+        self.map.sprites.new_player(Pos((9,10)), "4/2", team=2)
         self.map.turn = 1
 
         self.flags = {"select": False, "show_info": False}

@@ -1,23 +1,16 @@
 import pygame
-from player.images import Images
-from player.info import Info
+
+from player.images import get_image
+
+from position import Pos
 import settings as st
 import colors as cl
-from position import Pos
 
-class Sprite(pygame.sprite.Sprite, Images):
-    def __init__(self, pos, code, team=0):
-        self.pos = pos
+class Sprite(pygame.sprite.Sprite):
+    def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        Images.__init__(self, code)
+        self.image = get_image(self.code)
         self.rect = self.image.get_rect()
-        self.rect.topleft = pos.pixel()
-        self.flags = {"select": False, "show_info": False}
-        self.info = Info(self)
-        self.init_surfaces()
-
-    def change(self, flag, value):
-        self.flags[flag] = value
 
     def init_surfaces(self):
         #Team
@@ -30,11 +23,7 @@ class Sprite(pygame.sprite.Sprite, Images):
         pygame.draw.circle(self.selected_image, cl.WHITE, (st.TILE//2,st.TILE//2), st.TILE//3*2)
 
     def draw(self, screen):
-        if self.flags["select"]:
-            screen.blit(self.selected_image, self.rect)
-        screen.blit(self.team_image, self.rect)
         screen.blit(self.image, self.rect)
 
     def update(self):
-        self.info.update()
         self.rect.topleft = self.pos.pixel()
