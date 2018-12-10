@@ -1,6 +1,6 @@
 import pygame
 
-from player.images import get_image
+from images import by_code
 
 from position import Pos
 import settings as st
@@ -9,7 +9,7 @@ import colors as cl
 class Sprite(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = get_image(self.code)
+        self.image = by_code(self.code)
         self.rect = self.image.get_rect()
 
     def init_surfaces(self):

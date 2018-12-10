@@ -1,16 +1,13 @@
 import pygame
 import settings as st
 import colors as cl
-from sprites import Sprites
+from map.sprites import Sprites
 
-class Map:
+class Map(Sprites):
     def __init__(self):
-        self.sprites = Sprites(self)
-        self.screen = pygame.Surface(st.SIZE)
-        self.draw_grill()
+        Sprites.__init__(self)
         self.light_image = pygame.image.load("images/light.png")
-
-    def draw_grill(self):
+        self.screen = pygame.Surface(st.SIZE)
         self.screen.fill(cl.GREY)
         for x in range(0, st.WIDTH, st.TILE):
             pygame.draw.line(self.screen, cl.BLACK, (x, 0), (x, st.HEIGHT))
@@ -24,14 +21,14 @@ class Map:
 
     def draw(self, screen):
         screen.blit(self.screen, (0,0))
-        self.sprites.draw(screen)
+        for sprite in self.players:
+            sprite.draw(screen)
 
     def empty(self, pos):
         sprite = self.get_sprite(pos)
-        print(sprite == None)
         return sprite == None
 
     def get_sprite(self, pos):
-        for sprite in self.sprites:
+        for sprite in self.players:
             if sprite.pos == pos:
                 return sprite

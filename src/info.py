@@ -1,42 +1,42 @@
 import pygame
 import settings as st
 import colors as cl
+from position import Pos
 
 class Info:
-    def __init__(self, player):
-        self.player = player
+    def __init__(self):
         self.font_name = pygame.font.match_font("comicsansms")
         self.image = pygame.Surface(st.INFO_SIZE)
         self.rect = self.image.get_rect()
+        self.rect.top = st.HEIGHT
 
-        self.made_screen()
 
     def write(self, text, size, pos, color):
+        pos = (Pos(pos) + Pos((0.5,0))).pixel()
         font = pygame.font.Font(self.font_name, size)
         image = font.render(text, True, color)
         rect = image.get_rect()
         rect.topleft = pos
         self.image.blit(image, rect)
 
-    def made_screen(self):
-        self.image.fill(cl.BLACK)
-        p = pygame.Surface((st.INFO_WIDTH-st.INFO_MARGIN, st.INFO_HEIGHT-st.INFO_MARGIN))
-        p.fill(cl.WHITE)
-        self.image.blit(p, (st.INFO_MARGIN//2, st.INFO_MARGIN//2))
+    def clear(self):
+        self.image.fill(cl.GREY)
 
-        self.write("Vita %s" %str(self.player.stats.life), st.TILE//2-4, (st.INFO_MARGIN,st.INFO_MARGIN), cl.RED)
-        self.write("Mana %s" %str(self.player.stats.mana), st.TILE//2-4, (st.INFO_WIDTH/2,st.INFO_MARGIN), cl.BLUE)
+    def set_sprite(self, sprite):
+        self.clear()
+        icon = pygame.Surface((st.TILE*3, st.TILE*3))
+        image_sprite = pygame.transform.scale(sprite.image, (st.TILE*2,st.TILE*2))
+        icon.blit(image_sprite, (st.TILE//2,st.TILE//2))
+        self.image.blit(icon, (0,0))
 
-        self.write("Attacco %s" %str(self.player.stats.attack), st.TILE//2-4, (st.INFO_MARGIN,st.INFO_MARGIN*4), cl.BLACK)
-        self.write("Difesta %s" %str(self.player.stats.defense), st.TILE//2-4, (st.INFO_WIDTH/2,st.INFO_MARGIN*4), cl.BLACK)
-        self.write("Velocita' %s" %str(self.player.stats.speed), st.TILE//2-4, (st.INFO_MARGIN,st.INFO_MARGIN*7), cl.BLACK)
-        self.write("Gittata %s" %str(self.player.stats.range), st.TILE//2-4, (st.INFO_WIDTH/2,st.INFO_MARGIN*7), cl.BLACK)
+        self.write("%s" %str(sprite.name), st.TILE//2, (3,0), cl.WHITE)
+        self.write("Vita %s" %str(sprite.stats.life), st.TILE//2, (11,0), cl.RED)
+        self.write("Mana %s" %str(sprite.stats.mana), st.TILE//2, (16,0), cl.BLUE)
+
+        self.write("Attacco %s" %str(sprite.stats.attack), st.TILE//2, (3,1), cl.BLACK)
+        self.write("Difesta %s" %str(sprite.stats.defense), st.TILE//2, (9,1), cl.BLACK)
+        self.write("Velocita' %s" %str(sprite.stats.speed), st.TILE//2, (3,2), cl.BLACK)
+        self.write("Gittata %s" %str(sprite.stats.range), st.TILE//2, (9,2), cl.BLACK)
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
-
-    def update(self):
-        if self.player.pos.y < 4:
-            self.rect.midtop = self.player.rect.midbottom
-        else:
-            self.rect.midbottom = self.player.rect.midtop

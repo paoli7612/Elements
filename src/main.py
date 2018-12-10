@@ -1,12 +1,13 @@
 import pygame
 
-from match import Match
+from loop import Loop
 
 class Boss:
     def __init__(self):
         pygame.init()
         pygame.mixer.init()
-        self.match = Match()
+        self.loop = Loop()
+        self.loop.start()
 
 def main(argv):
     b = Boss()

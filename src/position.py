@@ -45,6 +45,4 @@ class Pos:
         return "%d/%d"%(self.x, self.y)
 
     def __hash__(self):
-        if self.x < 0 or self.y < 0:
-            return 0
-        return int("%d0%d" %(self.x, self.y))
+        return hash((self.x, self.y))
