@@ -1,6 +1,6 @@
 import pygame
-from match.sprites.player.images import Images
-from match.sprites.player.info import Info
+from player.images import Images
+from player.info import Info
 import settings as st
 import colors as cl
 from position import Pos

@@ -1,5 +1,5 @@
 import pygame
-from match.sprites.player import Player
+from player import Player
 
 Group = pygame.sprite.Group
 

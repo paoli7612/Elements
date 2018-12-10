@@ -1,9 +1,6 @@
 import pygame
-from font import Font
 import settings as st
 import colors as cl
-
-
 
 class Info:
     def __init__(self, player):

@@ -36,11 +36,9 @@ class Loop:
 
     def update(self):
         self.map.sprites.update()
-        self.cursor.update()
 
     def draw(self):
         self.map.draw(self.screen)
-        self.cursor.draw(self.screen)
         if self.flags["show_info"]:
             self.flags["show_info"].info.draw(self.screen)
         if self.flags["select"]:

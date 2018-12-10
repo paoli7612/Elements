@@ -1,6 +1,6 @@
-from match.sprites.sprite import Sprite
-from match.sprites.player.stats import Stats
-from match.sprites.player.mover import Mover
+from sprite import Sprite
+from player.stats import Stats
+from player.mover import Mover
 import settings as st
 
 

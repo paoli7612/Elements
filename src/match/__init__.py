@@ -1,6 +1,5 @@
-from match.map import Map
-from match.loop import Loop
-from match.cursor import Cursor
+from map import Map
+from loop import Loop
 
 from position import Pos
 import settings as st
@@ -15,7 +14,6 @@ class Match(Loop):
         self.map.sprites.new_player(Pos((3,4)), "2", team=1)
         self.map.sprites.new_player(Pos((6,7)), "3", team=2)
         self.map.sprites.new_player(Pos((9,10)), "4", team=2)
-        self.cursor = Cursor()
         self.map.turn = 1
 
         self.flags = {"select": False, "show_info": False}

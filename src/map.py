@@ -1,7 +1,7 @@
 import pygame
 import settings as st
 import colors as cl
-from match.sprites import Sprites
+from sprites import Sprites
 
 class Map:
     def __init__(self):
