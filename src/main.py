@@ -1,11 +1,7 @@
-import pygame
-
 from match import Match
 
 class Boss:
     def __init__(self):
-        pygame.init()
-        pygame.mixer.init()
         self.match = Match()
 
 def main(argv):
