@@ -27,5 +27,5 @@ class Stats:
 
         self.attack = Attribute(10)
         self.defense = Attribute(10)
-        self.speed = Attribute(random.randint(2,8))
+        self.speed = Attribute(random.randint(2,4))
         self.range = Attribute(3)

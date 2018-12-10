@@ -5,6 +5,8 @@ class Flags:
     def __init__(self, turn):
         self.image_select = by_name("selected")
         self.image_motion = by_name("motion")
+        self.image_green = by_name("green")
+        self.image_red = by_name("red")
         self.info = Info()
 
         self.is_select = False
@@ -16,6 +18,7 @@ class Flags:
         self.sprite_select = sprite
         self.is_select = True
         self.info.set_sprite(sprite)
+        sprite.calculate()
 
     def deselect(self):
         self.sprite_select = None
@@ -30,9 +33,17 @@ class Flags:
         self.turn %= 2
         self.turn += 1
 
+    def show_nexts(self, screen, sprite):
+        if sprite.team == self.turn:
+            image = self.image_green
+        else:
+            image = self.image_red
+        for p in sprite.nexts:
+            screen.blit(image, p.pixel())
+
+
     def draw(self, screen):
         if self.is_select:
             screen.blit(self.image_select, self.sprite_select.pos.pixel())
-            for p in self.sprite_select.nexts:
-                screen.blit(self.image_motion, p.pixel())
+            self.show_nexts(screen, self.sprite_select)
         self.info.draw(screen)

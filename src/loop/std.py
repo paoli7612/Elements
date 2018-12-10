@@ -1,5 +1,6 @@
 import pygame
 import settings as st
+from position import Pos
 
 class Std:
     def __init__(self):
@@ -22,6 +23,8 @@ class Std:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self.switch_turn()
+                if event.key == pygame.K_q:
+                    print(self.map.empty(Pos((2,2))))
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.select(event.pos)
