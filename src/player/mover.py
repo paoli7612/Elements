@@ -3,33 +3,35 @@ from position import Pos
 class Mover:
     def __init__(self):
         self.nexts = list()
+        self.exhaust = False
         self.calculate()
 
-    def around(self, pos, d):
+    def around(self, x, y, d):
         if not d: return
-        if self.map.empty(pos):
+        if self.map.empty(Pos((x,y))):
             nexts = list()
-            nexts.append(Pos((pos.x+1, pos.y)))
-            nexts.append(Pos((pos.x-1, pos.y)))
-            nexts.append(Pos((pos.x, pos.y+1)))
-            nexts.append(Pos((pos.x, pos.y-1)))
-            for n in nexts:
+            nexts.append((x+1, y))
+            nexts.append((x-1, y))
+            nexts.append((x, y+1))
+            nexts.append((x, y-1))
+            for x, y in nexts:
                 self.nexts += nexts
-                self.around(n, d-1)
+                self.around(x, y, d-1)
 
     def calculate(self):
-        self.around(self.pos, self.stats.speed.value)
+        x, y = self.pos.index()
+        self.around(x, y, self.stats.speed.value)
         self.nexts = list(set(self.nexts))
+        poss = list()
+        for x,y in self.nexts:
+            poss.append(Pos((x,y)))
+        self.nexts = poss
 
     def move(self, dx, dy):
-        if self.speed:
-            next_pos = Pos((dx,dy)) + self.player.pos
-            if next_pos in self.nexts:
-                self.nexts = list()
-                self.player.pos.add(dx,dy)
-                self.speed -= 1
-                self.around(next_pos, self.speed)
-                self.calculate()
+        next_pos = Pos((dx,dy))
+        if not self.exhaust and next_pos in self.nexts:
+            self.pos = next_pos
+            self.exhaust = True
 
     def draw(self, screen):
         for p in self.nexts:

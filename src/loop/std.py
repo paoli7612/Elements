@@ -19,9 +19,14 @@ class Std:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    self.switch_turn()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.select(event.pos)
+                if event.button == 3:
+                    self.move(event.pos)
 
     def update(self):
         self.map.update()

@@ -1,3 +1,4 @@
+import random
 class Count:
     def __init__(self, v):
         self.value = v
@@ -26,5 +27,5 @@ class Stats:
 
         self.attack = Attribute(10)
         self.defense = Attribute(10)
-        self.speed = Attribute(4)
+        self.speed = Attribute(random.randint(2,8))
         self.range = Attribute(3)
