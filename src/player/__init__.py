@@ -3,18 +3,27 @@ from player.stats import Stats
 from player.mover import Mover
 
 import settings as st
+import json, os
 
 class Player(Sprite, Mover):
     TOT_TEAM = 0
     TEAMS = set()
     def __init__(self, map, pos, id, team):
         self.map = map
-        self.id = id
-        self.code = st.PLAYER_COORDS[id]
-        self.name = st.PLAYER_NAMES[id]
         self.team = team
         Player.TEAMS.add(team)
         self.pos = pos
-        self.stats = Stats()
+        self.load_stats(id)
         Mover.__init__(self)
         Sprite.__init__(self)
+
+    def load_stats(self, id):
+        filename = "players.json"
+        path = os.path.dirname(__file__)
+        path_json = os.path.join(path, filename)
+        file = open(path_json, "r")
+        dict = json.load(file)
+        p = dict[str(id)]
+        self.stats = Stats(p["stats"])
+        self.name = p["name"]
+        self.id = id

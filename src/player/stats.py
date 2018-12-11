@@ -21,11 +21,11 @@ class Attribute:
         return "%s" %self.value
 
 class Stats:
-    def __init__(self):
-        self.life = Count(10)
-        self.mana = Count(10)
+    def __init__(self, d):
+        self.life = Count(d["life"])
+        self.mana = Count(d["mana"])
 
-        self.attack = Attribute(10)
-        self.defense = Attribute(10)
-        self.speed = Attribute(random.randint(2,4))
-        self.range = Attribute(3)
+        self.attack = Attribute(d["attack"])
+        self.defense = Attribute(d["defense"])
+        self.speed = Attribute(d["speed"])
+        self.range = Attribute(d["range"])
