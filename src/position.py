@@ -30,7 +30,7 @@ class Pos:
         p = Pos((x, y))
         return p
 
-    def __neg__(self, other):
+    def __sub__(self, other):
         x = self.x - other.x
         y = self.y - other.y
         p = Pos((x, y))
@@ -43,3 +43,13 @@ class Pos:
 
     def __hash__(self):
         return hash((self.x, self.y))
+
+    def __gt__(self, other):
+        return self.__lt__(other)
+
+    def __lt__(self, other):
+        ix = self.x < other.x
+        iy = self.y < other.y
+        return ix and iy
+
+MARGIN = Pos(st.SIZE, True)

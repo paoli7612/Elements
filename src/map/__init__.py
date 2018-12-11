@@ -1,6 +1,7 @@
 import pygame
 import settings as st
 import colors as cl
+from position import MARGIN
 from map.sprites import Sprites
 
 class Map(Sprites):
@@ -25,6 +26,8 @@ class Map(Sprites):
             sprite.draw(screen)
 
     def empty(self, pos):
+        if not pos < MARGIN:
+            return False
         sprite = self.get_sprite(pos)
         return sprite == None
 

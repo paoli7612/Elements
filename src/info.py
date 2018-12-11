@@ -10,7 +10,6 @@ class Info:
         self.rect = self.image.get_rect()
         self.rect.top = st.HEIGHT
 
-
     def write(self, text, size, pos, color):
         pos = (Pos(pos) + Pos((0.5,0))).pixel()
         font = pygame.font.Font(self.font_name, size)
@@ -32,6 +31,7 @@ class Info:
         self.write("%s" %str(sprite.name), st.TILE//2, (3,0), cl.WHITE)
         self.write("Vita %s" %str(sprite.stats.life), st.TILE//2, (11,0), cl.RED)
         self.write("Mana %s" %str(sprite.stats.mana), st.TILE//2, (16,0), cl.BLUE)
+        self.write("TEAM %d" %sprite.team, st.TILE//2, (22,0), cl.TEAMS[sprite.team])
 
         self.write("Attacco %s" %str(sprite.stats.attack), st.TILE//2, (3,1), cl.BLACK)
         self.write("Difesta %s" %str(sprite.stats.defense), st.TILE//2, (9,1), cl.BLACK)
