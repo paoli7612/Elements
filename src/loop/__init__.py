@@ -28,7 +28,7 @@ class Loop(Std):
         self.flags.move(pos)
 
     def switch_turn(self):
-        print(Player.TOT_TEAM)
-        self.flags.switch_turn(Player.TOT_TEAM)
+        print(len(Player.TEAMS))
+        self.flags.switch_turn(len(Player.TEAMS))
         for p in self.map.players:
             p.exhaust = False

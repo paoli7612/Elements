@@ -6,13 +6,14 @@ import settings as st
 
 class Player(Sprite, Mover):
     TOT_TEAM = 0
+    TEAMS = set()
     def __init__(self, map, pos, id, team):
         self.map = map
         self.id = id
         self.code = st.PLAYER_COORDS[id]
         self.name = st.PLAYER_NAMES[id]
         self.team = team
-        Player.TOT_TEAM += 1
+        Player.TEAMS.add(team)
         self.pos = pos
         self.stats = Stats()
         Mover.__init__(self)
