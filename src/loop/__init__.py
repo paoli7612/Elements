@@ -7,8 +7,7 @@ from loop.std import Std
 from map import Map
 from position import Pos
 import settings as st
-
-
+from player import Player
 
 class Loop(Std):
     def __init__(self):
@@ -29,6 +28,7 @@ class Loop(Std):
         self.flags.move(pos)
 
     def switch_turn(self):
-        self.flags.switch_turn()
+        print(Player.TOT_TEAM)
+        self.flags.switch_turn(Player.TOT_TEAM)
         for p in self.map.players:
             p.exhaust = False

@@ -29,8 +29,8 @@ class Flags:
         if self.is_select and pos in self.sprite_select.nexts and self.sprite_select.team == self.turn:
             self.sprite_select.move(pos.x, pos.y)
 
-    def switch_turn(self):
-        self.turn %= 2
+    def switch_turn(self, tot_team):
+        self.turn %= tot_team
         self.turn += 1
 
     def show_nexts(self, screen, sprite):
