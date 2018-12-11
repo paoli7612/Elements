@@ -9,7 +9,7 @@ import colors as cl
 class Sprite(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = by_code(self.code)
+        self.image = by_code(self.id)
         self.rect = self.image.get_rect()
         self.init_surfaces()
 

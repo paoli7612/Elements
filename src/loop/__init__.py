@@ -12,17 +12,10 @@ import settings as st
 
 class Loop(Std):
     def __init__(self):
-        self.map = Map()
+        self.map = Map(1)
         self.flags = Flags(turn=1)
         Std.__init__(self)
-
-        #####################################################
-        self.map.new_player(Pos((2,2)), "Steve", team=1)
-        self.map.new_player(Pos((3,9)), "Henry", team=1)
-        self.map.new_player(Pos((6,7)), "Allan", team=2)
-        self.map.new_player(Pos((9,10)), "Evelin", team=2)
         self.turn = 1
-        #####################################################
 
     def select(self, mouse_pos):
         pos = Pos(mouse_pos, is_pixel=True)

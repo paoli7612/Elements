@@ -7,10 +7,11 @@ FPS = 40
 
 INFO_MARGIN = 10
 
-# name: code
-NAMES = {
-    "Steve": "1/3",
-    "Henry": "2/3",
-    "Evelin": "3/3",
-    "Allan": "4/3",
-}
+PLAYER_COORDS = list()
+for y in range(6):
+    for x in range(8):
+        PLAYER_COORDS.append((x,y))
+
+PLAYER_NAMES = list()
+for _ in PLAYER_COORDS:
+    PLAYER_NAMES.append(str(_))

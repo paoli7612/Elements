@@ -3,10 +3,12 @@ import settings as st
 import colors as cl
 from position import MARGIN
 from map.sprites import Sprites
+from map.loader import Loader
 
-class Map(Sprites):
-    def __init__(self):
+class Map(Sprites, Loader):
+    def __init__(self, id):
         Sprites.__init__(self)
+        Loader.__init__(self, id)
         self.light_image = pygame.image.load("images/light.png")
         self.screen = pygame.Surface(st.SIZE)
         self.screen.fill(cl.GREY)
@@ -14,6 +16,8 @@ class Map(Sprites):
             pygame.draw.line(self.screen, cl.BLACK, (x, 0), (x, st.HEIGHT))
         for y in range(0, st.HEIGHT, st.TILE):
             pygame.draw.line(self.screen, cl.BLACK, (0,y), (st.WIDTH, y))
+
+
 
     def light(self, screen, pos):
         try:

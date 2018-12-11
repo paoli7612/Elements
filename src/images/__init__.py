@@ -9,11 +9,10 @@ def get_img(name):
     img = pygame.image.load(img_path)
     return img
 
-def by_code(code):
+def by_code(id):
     img = get_img("players")
 
-    x, y = code.split("/")
-    x, y = int(x)*3+1, int(y)*4
+    x, y = st.PLAYER_COORDS[id]
     quad = (x*32, y*32, 32, 32)
 
     image = pygame.Surface((32,32))

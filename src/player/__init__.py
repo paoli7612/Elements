@@ -5,10 +5,11 @@ from player.mover import Mover
 import settings as st
 
 class Player(Sprite, Mover):
-    def __init__(self, map, pos, name, team):
+    def __init__(self, map, pos, id, team):
         self.map = map
-        self.code = st.NAMES[name]
-        self.name = name
+        self.id = id
+        self.code = st.PLAYER_COORDS[id]
+        self.name = st.PLAYER_NAMES[id]
         self.team = team
         self.pos = pos
         self.stats = Stats()
