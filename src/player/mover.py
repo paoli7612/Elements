@@ -18,6 +18,7 @@ class Mover:
 
     def calculate(self):
         self.nexts = list()
+        self.risks = list()
         x, y = self.pos.index()
         self.around(x, y, self.stats.speed.value)
         self.nexts = list(set(self.nexts))
@@ -26,7 +27,10 @@ class Mover:
             p = Pos((x,y))
             if self.map.empty(p):
                 poss.append(p)
+                self.find_enemy(p)
         self.nexts = poss
+        self.risks = list(set(self.risks))
+        self.risks.remove(self.pos)
 
     def move(self, dx, dy):
         next_pos = Pos((dx,dy))

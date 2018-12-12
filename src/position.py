@@ -52,4 +52,7 @@ class Pos:
         iy = self.y < other.y
         return ix and iy
 
+    def __str__(self):
+        return "x:%s\ty:%s" %(self.x, self.y)
+
 MARGIN = Pos(st.SIZE, True)

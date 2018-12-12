@@ -24,7 +24,7 @@ class Std:
                 if event.key == pygame.K_SPACE:
                     self.switch_turn()
                 if event.key == pygame.K_q:
-                    print(self.map.empty(Pos((2,2))))
+                    self.flags.sprite_select.find_enemy()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.select(event.pos)

@@ -4,7 +4,7 @@ from info import Info
 class Flags:
     def __init__(self, turn):
         self.image_select = by_name("selected")
-        self.image_motion = by_name("motion")
+        self.image_danger = by_name("danger")
         self.image_green = by_name("green")
         self.image_red = by_name("red")
         self.info = Info()
@@ -40,7 +40,8 @@ class Flags:
             image = self.image_red
         for p in sprite.nexts:
             screen.blit(image, p.pixel())
-
+        for p in sprite.risks:
+            screen.blit(self.image_danger, p.pixel())
 
     def draw(self, screen):
         if self.is_select:

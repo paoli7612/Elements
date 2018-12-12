@@ -9,6 +9,7 @@ class Info:
         self.image = pygame.Surface(st.INFO_SIZE)
         self.rect = self.image.get_rect()
         self.rect.top = st.HEIGHT
+        self.clear()
 
     def write(self, text, size, pos, color):
         pos = (Pos(pos) + Pos((0.5,0))).pixel()
