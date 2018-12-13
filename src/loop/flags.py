@@ -36,8 +36,7 @@ class Flags:
     def show_nexts(self, screen, sprite):
         if sprite.team == self.turn:
             image = self.image_green
-        else:
-            image = self.image_red
+        else: image = self.image_red
         for p in sprite.nexts:
             screen.blit(image, p.pixel())
         for p in sprite.risks:
