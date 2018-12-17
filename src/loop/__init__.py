@@ -10,8 +10,8 @@ import settings as st
 from player import Player
 
 class Loop(Std):
-    def __init__(self):
-        self.map = Map(1)
+    def __init__(self, id_map):
+        self.map = Map(id_map)
         self.flags = Flags(turn=1)
         Std.__init__(self)
         self.turn = 1

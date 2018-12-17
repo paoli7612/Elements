@@ -6,7 +6,7 @@ class Boss:
     def __init__(self):
         pygame.init()
         pygame.mixer.init()
-        self.loop = Loop()
+        self.loop = Loop(2)
         self.loop.start()
 
 def main(argv):
