@@ -4,11 +4,10 @@ class Pos:
     def __init__(self, pos, is_pixel=False):
         x, y = pos
         if is_pixel:
-            self.x = x // st.TILE
-            self.y = y // st.TILE
-        else:
-            self.x = x
-            self.y = y
+            x //= st.TILE
+            y //= st.TILE
+        self.x = x
+        self.y = y
 
     def pixel(self):
         x = self.x * st.TILE
