@@ -1,11 +1,12 @@
 import socket
-
+from users import Users
 class Server:
-    def __init__(self):
+    def __init__(self, max_users=1):
         self.running = True
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.users = list()
+        self.users = Users()
         self.start()
+        self.wait_clients(max_users)
 
     def start(self, port=7612):
         try:
@@ -17,10 +18,14 @@ class Server:
 
     def wait_clients(self, max_users):
          for n in range(max_users):
-            user, client_address = self.sock.accept()
+            print("In attesa del client numero %d" %(n+1))
+            sock = self.sock.accept()
+            self.users.new(*sock)
             print("Client correttamente connesso")
-            self.users.append(user)
 
-if __name__ == "__main__":
-    s = Server()
-    s.wait_clients(1)
+    def show_users(self):
+        for user in self.users():
+            print(user)
+
+    def send_all(self, message):
+        self.users.send_all(message)
