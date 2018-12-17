@@ -25,6 +25,7 @@ class Info:
     def set_sprite(self, sprite):
         self.clear()
         icon = pygame.Surface((st.TILE*3, st.TILE*3))
+        icon.fill(cl.TEAMS[sprite.team])
         image_sprite = pygame.transform.scale(sprite.image, (st.TILE*2,st.TILE*2))
         icon.blit(image_sprite, (st.TILE//2,st.TILE//2))
         self.image.blit(icon, (0,0))
