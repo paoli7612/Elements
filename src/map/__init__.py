@@ -40,5 +40,5 @@ class Map(Sprites, Loader):
             for x in xx:
                 s = self.get_sprite(Pos((x,y)))
                 if s:
-                    sprites.append(s.pos)
+                    sprites.append(s)
         return sprites

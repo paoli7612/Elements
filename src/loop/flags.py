@@ -1,5 +1,6 @@
 from images import by_name
 from info import Info
+from position import Pos
 
 class Flags:
     def __init__(self, turn):
