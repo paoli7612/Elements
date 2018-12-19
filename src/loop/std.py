@@ -29,7 +29,7 @@ class Std:
                 if event.button == 1:
                     self.select(event.pos)
                 if event.button == 3:
-                    self.move(event.pos)
+                    self.confirm(event.pos)
 
     def update(self):
         self.map.update()

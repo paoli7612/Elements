@@ -9,7 +9,7 @@ class Player(Sprite, Mover, Loader):
     TEAMS = set()
     def __init__(self, map, pos, id, team):
         Player.TEAMS.add(team)
-        
+
         self.map = map
         self.pos = pos
         self.id = id
@@ -18,3 +18,8 @@ class Player(Sprite, Mover, Loader):
         Loader.__init__(self) # name, stats
         Mover.__init__(self)
         Sprite.__init__(self)
+
+    def attack(self, sprite):
+        sprite.stats.life.neg(self.stats.attack.value)
+        if not sprite.stats.live:
+            sprite.kill()

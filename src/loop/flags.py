@@ -27,9 +27,17 @@ class Flags:
         self.info.clear()
 
     def move(self, pos):
-        if self.is_select and pos in self.sprite_select.nexts and self.sprite_select.team == self.turn:
-            self.sprite_select.move(pos.x, pos.y)
+        self.sprite_select.move(pos)
 
+    def shot(self, pos):
+        self.sprite_select.shot(pos)
+
+    def confirm(self, pos):
+        if not self.is_select: return
+        if not self.sprite_select.team == self.turn: return
+        self.shot(pos)
+        self.move(pos)
+        self.sprite_select.calculate()
     def switch_turn(self, tot_team):
         self.turn %= tot_team
         self.turn += 1

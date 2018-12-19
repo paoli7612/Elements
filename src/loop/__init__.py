@@ -23,12 +23,13 @@ class Loop(Std):
             self.flags.select(sprite)
         else: self.flags.deselect()
 
-    def move(self, mouse_pos):
+    def confirm(self, mouse_pos):
         pos = Pos(mouse_pos, is_pixel=True)
-        self.flags.move(pos)
+        self.flags.confirm(pos)
 
     def switch_turn(self):
         print(len(Player.TEAMS))
         self.flags.switch_turn(len(Player.TEAMS))
         for p in self.map.players:
             p.exhaust = False
+            p.unloaded = False

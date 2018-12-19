@@ -6,7 +6,6 @@ class Mover:
         self.unloaded = False   # has attack
 
     def around(self, x, y, d):
-        print("around", x, y)
         if not d: return
         nexts = list()
         nexts.append((x+1, y))
@@ -36,9 +35,14 @@ class Mover:
         for s in ss:
             self.risks.append(s.pos)
 
-    def move(self, dx, dy):
-        next_pos = Pos((dx,dy))
+    def move(self, next_pos):
         if not self.exhaust and next_pos in self.nexts:
             self.pos = next_pos
             self.calculate()
             self.exhaust = True
+
+    def shot(self, pos):
+        if not self.unloaded and pos in self.risks:
+            sprite = self.map.get_sprite(pos)
+            self.unloaded = True
+            self.attack(sprite)

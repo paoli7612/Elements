@@ -1,13 +1,17 @@
 import random
 class Count:
-    def __init__(self, v):
+    def __init__(self, s, v):
+        self.stats = s
         self.value = v
         self.max = v
     def add(self, v):
         self.value += v
         self.value = min(self.value, self.max)
         if self.value <= 0:
-            pass
+            self.stats.live = False
+
+    def neg(self, v):
+        return self.add(-v)
     def __str__(self):
         return "%s/%s" %(self.value,self.max)
 
@@ -22,8 +26,9 @@ class Attribute:
 
 class Stats:
     def __init__(self, d):
-        self.life = Count(d["life"])
-        self.mana = Count(d["mana"])
+        self.live = True
+        self.life = Count(self,d["life"])
+        self.mana = Count(self,d["mana"])
 
         self.attack = Attribute(d["attack"])
         self.defense = Attribute(d["defense"])
