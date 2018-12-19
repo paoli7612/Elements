@@ -1,12 +1,11 @@
 from player.sprite import Sprite
 from player.stats import Stats
 from player.mover import Mover
-from player.tracer import Tracer
 
 import settings as st
 import json, os
 
-class Player(Sprite, Mover, Tracer):
+class Player(Sprite, Mover):
     TOT_TEAM = 0
     TEAMS = set()
     def __init__(self, map, pos, id, team):
@@ -16,7 +15,6 @@ class Player(Sprite, Mover, Tracer):
         self.pos = pos
         self.load_stats(id)
         Mover.__init__(self)
-        Tracer.__init__(self)
         Sprite.__init__(self)
 
     def load_stats(self, id):

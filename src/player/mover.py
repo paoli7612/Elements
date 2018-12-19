@@ -3,6 +3,7 @@ from position import Pos
 class Mover:
     def __init__(self):
         self.exhaust = False
+        self.unloaded = False
 
     def around(self, x, y, d):
         if not d: return
@@ -15,6 +16,15 @@ class Mover:
             if self.map.empty(Pos((x,y))):
                 self.nexts.append((x,y))
                 self.around(x, y, d-1)
+
+
+    def find_enemy(self, pos):
+        r = self.stats.range.value
+        a = pos + Pos((-r, -r))
+        b = pos + Pos((r, r))
+
+        ss = self.map.get_sprites(a, b)
+        self.risks += ss
 
     def calculate(self):
         self.nexts = list()
