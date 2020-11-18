@@ -1,3 +1,3 @@
-gnome-terminal --geometry=100x10 -e './Server'
-gnome-terminal --geometry=100x10 -e './Client'
-gnome-terminal --geometry=100x10 -e './Client'
+gnome-terminal --title='Server' --geometry=100x10+10+10 -- './Server'
+gnome-terminal --title='Client 1' --geometry=100x10+10+250 -- './Client'
+gnome-terminal --title='Client 2' --geometry=100x10+10+480 -- './Client'
