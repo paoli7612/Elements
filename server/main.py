@@ -1,5 +1,6 @@
-import time
+import time, random
 from server import Server
+from window import Window
 
 
 def main(argv):
@@ -11,7 +12,7 @@ def main(argv):
 
     s = Server()
     s.start(port)
-    s.wait_clients(1)
+    s.wait_clients(2)
 
 if __name__ == "__main__":
     import sys

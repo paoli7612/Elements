@@ -12,6 +12,8 @@ def main(argv):
     client = Client()
     client.start(host, port)
 
+    print('Client connesso correttamente')
+
 if __name__ == "__main__":
     import sys
     main(sys.argv)

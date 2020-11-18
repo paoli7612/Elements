@@ -17,8 +17,8 @@ class Server:
             self.running = False
 
     def wait_clients(self, max_users):
-         for n in range(max_users):
-            print("In attesa del client numero %d" %(n+1))
+         for n in range(1, max_users+1):
+            print("In attesa del client numero %d" %(n))
             sock = self.sock.accept()
             self.users.new(*sock)
             print("Client correttamente connesso")
