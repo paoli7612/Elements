@@ -1,8 +1,15 @@
 from client import Client
 
 def main(argv):
-    self.client = Client()
-    self.client.start("127.0.0.1", 7612)
+    try:
+        host = argv[1]
+        port = int(argv[2])
+    except:
+        print("required [ip] [port]")
+        exit(0)
+
+    client = Client()
+    client.start(host, port)
 
 if __name__ == "__main__":
     import sys

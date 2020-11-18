@@ -4,10 +4,10 @@ class Client:
     def __init__(self):
         self.running = True
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.start("localhost")
 
-    def start(self, ip, port=7612):
+    def start(self, ip, port):
         connected = False
+        timeout = 0
         while not connected:
             try:
                 self.sock.connect((ip, port))
@@ -15,6 +15,10 @@ class Client:
             except ConnectionRefusedError:
                 print("Connessione non riuscita. Nuovo tentativo in corso...")
                 time.sleep(0.5)
+                timeout += 1
+            if (timeout > 5):
+                print("Time out")
+                exit(0)
 
     def recv_all(self):
         while self.running:

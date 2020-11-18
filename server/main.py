@@ -1,8 +1,14 @@
 from server import Server
 
 def main(argv):
+    try:
+        port = int(argv[1])
+    except:
+        print("required [port]")
+        exit(0)
+
     s = Server()
-    s.start()
+    s.start(port)
     s.wait_clients(1)
 
 if __name__ == "__main__":
