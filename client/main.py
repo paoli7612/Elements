@@ -1,3 +1,4 @@
+import time
 from client import Client
 
 def main(argv):
@@ -14,3 +15,4 @@ def main(argv):
 if __name__ == "__main__":
     import sys
     main(sys.argv)
+    time.sleep(5)
